@@ -1,27 +1,7 @@
-const products=[ {
-  image :'images/products/athletic-cotton-socks-6-pairs.jpg',
-  name: 'Black and Gray Athletic Cotton Socks - 6 Pairs' ,
-  rating:{
-    stars:4.5 , count:87 
-  }
-  , pricCents: 1090
-} , 
-{
-  image :'images/products/intermediate-composite-basketball.jpg',
-name: ' Intermediate Size Basketball' ,
-rating:{
-  stars:4 , count:127
-} , pricCents: 2095
- } , 
- {
-  image :'images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg',
-name: 'Adults Plain Cotton T-Shirt - 2 Pack' ,
-rating:{
-  stars:4.5 , count:127} , pricCents: 799
- } ]
-let producstHTML ='' ;
- products.forEach((product) =>{
-  producstHTML+= `
+
+let producstHTML = '';
+products.forEach((product) => {
+  producstHTML += `
    <div class="product-container">
           <div class="product-image-container">
             <img class="product-image"
@@ -34,14 +14,14 @@ let producstHTML ='' ;
 
           <div class="product-rating-container">
             <img class="product-rating-stars"
-              src="images/ratings/rating-${product.rating.stars*10}.png">
+              src="images/ratings/rating-${product.rating.stars * 10}.png">
             <div class="product-rating-${product.rating.count}-primary">
               87
             </div>
           </div>
 
           <div class="product-price">
-            $${product.pricCents/100 .toFixed(2)}
+            $${product.pricCents / 100 .toFixed(2)}
           </div>
 
           <div class="product-quantity-container">
@@ -66,16 +46,48 @@ let producstHTML ='' ;
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary js-add-to-cart"
+          data-product-name="${product.Id}">
             Add to Cart
           </button>
         </div>
   `;
+})
+
+
+
+
+  document.querySelector('.js-products-grid').innerHTML = producstHTML;
+  
+  document.querySelectorAll('.js-add-to-cart')
+
+    .forEach((button) => {
+      button.addEventListener('click', () => {
+        const productId = button.dataset.productId;
  
+        let machingItem;
+        cart.forEach((item)=> {
+          if(productId ===item.productId)
+            {
+             machingItem=item ;
+            
+          }
+          if(machingItem)
+          {
+            machingItem.quantity+=1;
+          }
+          else()
+          {
 
-
-console.log(producstHTML)
-document.querySelector('.js-products-grid').innerHTML=producstHTML;
-
-
-});
+            cart.push({
+              productId: producId,
+              quantity : 1
+            });
+          }
+          
+        });
+    
+        console.log(cart);
+      });
+      
+    }); 
