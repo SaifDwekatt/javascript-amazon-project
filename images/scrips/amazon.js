@@ -72,22 +72,26 @@ products.forEach((product) => {
              machingItem=item ;
             
           }
+        });
           if(machingItem)
           {
             machingItem.quantity+=1;
           }
-          else()
+          else
           {
 
             cart.push({
-              productId: producId,
-              quantity : 1
+              productId:productId,
+              quantity : 1,
             });
           }
+          let cartQuantity=0;
+          cart.forEach((items)=> {
+            cartQuantity=+items.quantity ;
+          })
           
-        });
+          document.querySelector('.js-cart-quantity') .innerHTML=cartQuantity;
     
-        console.log(cart);
       });
       
     }); 
